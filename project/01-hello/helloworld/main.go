@@ -19,6 +19,7 @@ func main() {
   array()
   maptest()
   iftest()
+  fortest()
 }
 
 func hello() {
@@ -127,5 +128,51 @@ func iftest() {
   result := 404
   if statusText, exists := status[result]; exists {
     fmt.Println(statusText)
+  }
+}
+
+func fortest() {
+  names := []string{"Yamada", "Tanaka", "Suzuki"}
+  // rangeは
+  // 配列の場合index, valueを返す
+  // mapの場合はkey, valueを返す
+  // 二番目がいらない場合は省略してもよい
+  // 二番目だけがほしい場合はアンダースコアを使って使用しないことを明示する
+  for i, s := range names {
+    fmt.Printf("[%v]: %v\n", i, s)
+  }
+  for _, s := range names {
+    fmt.Printf("%v\n", s)
+  }
+
+  // 他の言語と同様にbreakやcontinueが使える
+  nums := []int{1,2,3,4,5}
+  for _, n := range nums {
+    if n >3 {
+      break
+    }
+    fmt.Printf("value is %v\n", n)
+  }
+
+  // いわゆるwhile
+  i := 0
+  for i < len(nums) {
+    fmt.Printf("nums[%v]=%v\n", i, nums[i])
+    i++
+  }
+
+  i = 0
+  // whileの無限ループ
+  for {
+    if i > len(nums) {
+      break
+    }
+    i++
+  }
+  fmt.Println("breaked")
+
+  // 伝統的なfor
+  for i := 0; i < len(nums); i++ {
+    fmt.Printf("[%v]: %v\n", i, nums[i])
   }
 }
