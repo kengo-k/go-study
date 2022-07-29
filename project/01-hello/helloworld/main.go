@@ -16,6 +16,7 @@ func main() {
   hello()
   num()
   pointer()
+  array()
 }
 
 func hello() {
@@ -62,4 +63,23 @@ func pointer() {
   var pb *int = nil
   pb = &b
   fmt.Println(*pa + *pb)
+}
+
+func array() {
+  // 固定長配列
+  var nums [3]int = [3]int{1,2,3}
+  // lenで長さを取得
+  fmt.Println(len(nums))
+  // インデックスアクセス
+  fmt.Println(nums[1])
+
+  // 可変長配列
+  nums2 := []int{5,6,7}
+  // appendで追加
+  nums2 = append(nums2, 8)
+  nums2 = append(nums2, 9)
+  // 切り出し
+  nums3 := nums2[2:4]
+  fmt.Println(len(nums3))
+  fmt.Println(nums3[0])
 }
