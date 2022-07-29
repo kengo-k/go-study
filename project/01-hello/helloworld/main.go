@@ -18,6 +18,7 @@ func main() {
   pointer()
   array()
   maptest()
+  iftest()
 }
 
 func hello() {
@@ -101,5 +102,30 @@ func maptest() {
   yamada, exists := persons["Yamada"]
   if (exists) {
     fmt.Println(yamada)
+  }
+}
+
+func iftest() {
+  num := 1
+  b := true
+  // 他の言語にあるようないい感じにbool値として判断してくれる機能はないためbool値を明示する必要がある
+  if (num == 0) {
+    fmt.Println(num)
+    // ifの後のかっこはなくてもいい
+  } else if b {
+    fmt.Println(b)
+  } else {
+    fmt.Println(b)
+  }
+
+  status := map[int]string {
+    200: "OK",
+    404: "Not Found",
+  }
+
+  // 結果の取得と存在チェックをひとつのifで記述できる
+  result := 404
+  if statusText, exists := status[result]; exists {
+    fmt.Println(statusText)
   }
 }
