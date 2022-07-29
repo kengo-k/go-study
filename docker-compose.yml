@@ -1,0 +1,9 @@
+version: "3"
+services:
+  client:
+    build:
+      context: .
+    container_name: study-go
+    tty: true
+    volumes:
+      - "$PWD/project:/opt/project"
