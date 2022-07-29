@@ -11,6 +11,6 @@ RUN \
 RUN \
   curl -OL https://go.dev/dl/go1.18.4.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz \
-    && echo 'PATH=$PATH:/usr/local/go/bin' > ~/.bashrc
+    && echo 'PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
 
 CMD /bin/bash
