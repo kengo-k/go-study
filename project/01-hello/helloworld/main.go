@@ -17,6 +17,7 @@ func main() {
   num()
   pointer()
   array()
+  maptest()
 }
 
 func hello() {
@@ -82,4 +83,23 @@ func array() {
   nums3 := nums2[2:4]
   fmt.Println(len(nums3))
   fmt.Println(nums3[0])
+}
+
+func maptest() {
+  // mapを作成するには`map`か`make`を使用する
+  status := map[int]string {
+    200: "OK",
+    404: "Not Found",
+  }
+  // mapアクセスは二番目の戻り値として見つかったかを返すが取らないことも可能
+  fmt.Println(status[200])
+
+  persons := make(map[string]int)
+  persons["Yamada"] = 42
+  persons["Tanaka"] = 51
+  // 二番目の戻り値を取って存在チェック
+  yamada, exists := persons["Yamada"]
+  if (exists) {
+    fmt.Println(yamada)
+  }
 }
