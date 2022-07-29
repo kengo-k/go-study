@@ -1,0 +1,17 @@
+# HelloWorldを実行する
+
+まずは下記のコマンド
+
+```
+go mod init helloworld
+```
+
+を実行し`go.mod`ファイルを作成する。
+
+続いてメインプログラム`main.go`を作成し下記のコマンドでビルドを実行する
+
+```
+go build
+```
+
+実行ファイル`helloworld`が生成されるため`./helloworld`を実行しコマンドラインに文字列が出力されればOK
