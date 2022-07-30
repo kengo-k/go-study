@@ -20,6 +20,7 @@ func main() {
   maptest()
   iftest()
   fortest()
+  switchtest()
 }
 
 func hello() {
@@ -174,5 +175,24 @@ func fortest() {
   // 伝統的なfor
   for i := 0; i < len(nums); i++ {
     fmt.Printf("[%v]: %v\n", i, nums[i])
+  }
+}
+
+func switchtest() {
+  status := 404
+  switch status {
+  case 200:
+    // 他の言語のswitchのようにデフォルトではfallthroughしないため
+    // breakする必要がない
+    fmt.Println("OK")
+  case 404:
+    fmt.Println("Not Found")
+    // fallthroughしたい場合
+    fallthrough
+  case 500:
+    fmt.Println("Server Error")
+    fallthrough
+  default:
+    fmt.Println("Default")
   }
 }
