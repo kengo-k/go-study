@@ -8,6 +8,7 @@ import (
   "strconv"
   "os"
   "io"
+  "encoding/json"
 )
 
 // mainパッケージのmain関数がエントリポイントになる
@@ -25,6 +26,8 @@ func main() {
   switchtest()
   functest()
   defertest()
+  structtest()
+  jsontest()
 }
 
 func hello() {
@@ -246,6 +249,8 @@ func addFactory(a int) func(int) int {
 }
 
 func defertest() {
+  // Goのエラー処理にJavaのような例外処理はないのでerr変数を返す方式を使う
+  // 関数の戻り値の最後をerror型で返すようにするのが慣習。errがnilであれば正常終了と判断する
   f, err := os.Create("sample.txt")
   if err != nil {
     fmt.Println("err", err)
@@ -257,4 +262,39 @@ func defertest() {
   // すでにCloseを実行しているのでエラーになってしまうように見えてしまうが
   // Closeはこの関数が終了した後に行われるためファイル出力は正常に行われる
   io.WriteString(f, "Hello, Go")
+}
+
+// 構造体
+type Student struct {
+  Name string `json:"name"`
+  Age int `json:"age"`
+  Gender string `json:"gender"`
+}
+
+func structtest() {
+  // デフォルト値で初期化された構造体を生成
+  var yamada Student
+  // 一部フィールドを初期化して生成
+  tanaka := Student {
+    Name: "tanaka",
+  }
+  pSuzuki := &Student {
+    Name: "suzuki",
+  }
+  fmt.Printf("Name: %v\n", yamada.Name)
+  fmt.Printf("Name: %v\n", tanaka.Name)
+  // *pSuzuki.Nameと書くとエラーになってしまう模様
+  suzuki := *pSuzuki
+  fmt.Printf("Name: %v\n", suzuki.Name)
+}
+
+func jsontest() {
+  f, err := os.Open("student.json")
+  if err != nil {
+    return
+  }
+  decoder := json.NewDecoder(f)
+  var student Student
+  decoder.Decode(&student)
+  fmt.Println(student)
 }
