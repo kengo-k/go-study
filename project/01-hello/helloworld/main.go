@@ -4,8 +4,10 @@
 package main
 
 import (
-  "fmt";
+  "fmt"
   "strconv"
+  "os"
+  "io"
 )
 
 // mainパッケージのmain関数がエントリポイントになる
@@ -22,6 +24,7 @@ func main() {
   fortest()
   switchtest()
   functest()
+  defertest()
 }
 
 func hello() {
@@ -240,4 +243,18 @@ func addFactory(a int) func(int) int {
     return a + b
   }
   return f
+}
+
+func defertest() {
+  f, err := os.Create("sample.txt")
+  if err != nil {
+    fmt.Println("err", err)
+    return
+  }
+  // deferを使うと後処理を定義できる
+  // この関数を抜けたあとにファイルをクローズする
+  defer f.Close()
+  // すでにCloseを実行しているのでエラーになってしまうように見えてしまうが
+  // Closeはこの関数が終了した後に行われるためファイル出力は正常に行われる
+  io.WriteString(f, "Hello, Go")
 }
