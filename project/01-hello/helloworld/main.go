@@ -21,6 +21,7 @@ func main() {
   iftest()
   fortest()
   switchtest()
+  functest()
 }
 
 func hello() {
@@ -195,4 +196,48 @@ func switchtest() {
   default:
     fmt.Println("Default")
   }
+}
+
+func functest() {
+  a := 5
+  b := 12
+  fmt.Printf("%v + %v = %v\n", a, b, add(a, b))
+
+  _, err := div(7, 0)
+  if (err) {
+    fmt.Println("ERROR!!")
+  }
+  ret, _ := div(7, 2)
+  fmt.Printf("7 / 2 = %v\n", ret)
+
+  add100 := addFactory(100)
+  fmt.Printf("add100(5) = %v\n", add100(5))
+}
+
+// 一般的な関数定義
+func add(a int, b int) int {
+  return a + b
+}
+
+// a, bが同じ型なので型をまとめて定義している
+func div(a, b int) (ret int, err bool) {
+  // 戻り値の変数名を定義することができる
+  // 既存の言語のようにreturnで値を返すのではなく変数に値を設定して単にreturnとだけすればよい
+
+  if b == 0 {
+    err = true
+    return
+  }
+  // int同士で割り算した場合は結果はintとなる
+  ret = a / b
+  err = false
+  return
+}
+
+// 関数を返す関数と無名関数
+func addFactory(a int) func(int) int {
+  f := func(b int) int {
+    return a + b
+  }
+  return f
 }
