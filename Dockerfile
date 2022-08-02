@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN \
   apt-get update \
     && apt-get -y install curl \
+    && apt-get -y install build-essential \
     && apt-get -y install vim
 
 RUN \
