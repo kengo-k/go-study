@@ -9,7 +9,7 @@ import (
   "encoding/json"
 )
 
-func TestHello(t *testing.T) {  
+func TestHello(t *testing.T) {
   // varで変数宣言 変数名の後に型名が来る
   var hello string = "Hello"
   // ただし右辺で型が決まるなら型名は省略してよい
@@ -17,7 +17,7 @@ func TestHello(t *testing.T) {
   // 宣言と同時に代入する場合はさらにvarも省略可能
   // ただし関数内部でしか使えない
   space := ` ` // 文字列リテラルはバッククオートも使用可能
-  
+
   strcat := hello + space + world
   expected := "Hello World"
   if (strcat != expected) {
@@ -81,7 +81,7 @@ func TestPointer(t *testing.T) {
 }
 
 func TestArray(t *testing.T) {
-  
+
   // 固定長配列
   nums := [3]int{10,20,30}
   expectedLen := 3
@@ -154,7 +154,7 @@ func TestMap(t *testing.T) {
 func TestIf(t *testing.T) {
   num := 1
   b := true
-  
+
   // 他の言語にあるようないい感じにbool値として判断してくれる仕様はないためbool値を明示する必要がある
   if (num == 0) {
     t.Errorf("Error, num=%v", num)
@@ -178,7 +178,7 @@ func TestIf(t *testing.T) {
 
 func TestFor(t *testing.T) {
   names := []string{"Yamada", "Tanaka", "Suzuki"}
-  
+
   // rangeは
   // 配列の場合index, valueを返す
   // mapの場合はkey, valueを返す
@@ -198,7 +198,7 @@ func TestFor(t *testing.T) {
   }
   expectedLastIndex := 2
   if (lastIndex != expectedLastIndex) {
-    t.Errorf("got `%v` , expected `%v`", lastIndex, expectedLastIndex)    
+    t.Errorf("got `%v` , expected `%v`", lastIndex, expectedLastIndex)
   }
 
   // 二番目だけがほしい場合はアンダースコアを使って使用しないことを明示する
@@ -208,7 +208,7 @@ func TestFor(t *testing.T) {
   }
   expectedLastValue := "Suzuki"
   if (lastValue != expectedLastValue) {
-    t.Errorf("got `%v` , expected `%v`", lastValue, expectedLastValue)    
+    t.Errorf("got `%v` , expected `%v`", lastValue, expectedLastValue)
   }
 
   // 他の言語と同様にbreakやcontinueが使える
@@ -222,7 +222,7 @@ func TestFor(t *testing.T) {
   }
   expectedBreakValue := 4
   if (breakedValue != expectedBreakValue) {
-    t.Errorf("got `%v` , expected `%v`", breakedValue, expectedBreakValue)    
+    t.Errorf("got `%v` , expected `%v`", breakedValue, expectedBreakValue)
   }
 
   // いわゆるwhile
@@ -234,7 +234,7 @@ func TestFor(t *testing.T) {
   }
   expectedSum := 15
   if (sum != expectedSum) {
-    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)    
+    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)
   }
 
   i = 0
@@ -248,7 +248,7 @@ func TestFor(t *testing.T) {
     i++
   }
   if (sum != expectedSum) {
-    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)    
+    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)
   }
 
   // 伝統的なfor
@@ -257,8 +257,8 @@ func TestFor(t *testing.T) {
     sum += nums[i]
   }
   if (sum != expectedSum) {
-    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)    
-  }  
+    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)
+  }
 }
 
 func TestSwitch(t *testing.T) {
@@ -283,17 +283,17 @@ func TestSwitch(t *testing.T) {
     caseDefault = true
   }
   if (case200) {
-    t.Errorf("case200 must be `%v`", false)    
+    t.Errorf("case200 must be `%v`", false)
   }
   if (!case404) {
-    t.Errorf("case404 must be `%v`", true)    
+    t.Errorf("case404 must be `%v`", true)
   }
   if (!case500) {
-    t.Errorf("case500 must be `%v`", true)    
+    t.Errorf("case500 must be `%v`", true)
   }
   if (!caseDefault) {
-    t.Errorf("caseDefault must be `%v`", true)    
-  }      
+    t.Errorf("caseDefault must be `%v`", true)
+  }
 }
 
 func TestFunc(t *testing.T) {
@@ -302,7 +302,7 @@ func TestFunc(t *testing.T) {
   sum := add(a, b)
   expectedSum := 17
   if (sum != expectedSum) {
-    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)    
+    t.Errorf("got `%v` , expected `%v`", sum, expectedSum)
   }
 
   // 0除算エラー
@@ -314,7 +314,7 @@ func TestFunc(t *testing.T) {
   divd, _ := div(7, 2)
   expectedDivd := 3
   if (divd != expectedDivd) {
-    t.Errorf("got `%v` , expected `%v`", divd, expectedDivd)    
+    t.Errorf("got `%v` , expected `%v`", divd, expectedDivd)
   }
 
   // 高階関数
@@ -322,7 +322,7 @@ func TestFunc(t *testing.T) {
   add100Result := add100(50)
   expectedAdd100Result := 150
   if (add100Result != expectedAdd100Result) {
-    t.Errorf("got `%v` , expected `%v`", add100Result, expectedAdd100Result)    
+    t.Errorf("got `%v` , expected `%v`", add100Result, expectedAdd100Result)
   }
 }
 
@@ -337,7 +337,7 @@ func TestDefer(t *testing.T) {
   // deferを使うと後処理を定義できる
   // この関数を抜けたあとにファイルをクローズする
   defer f.Close()
-  
+
   // すでにCloseを実行しているのでエラーになってしまうように見えてしまうが
   // Closeはこの関数が終了した後に行われるためファイル出力は正常に行われる
   io.WriteString(f, "Hello, World")
@@ -346,19 +346,19 @@ func TestDefer(t *testing.T) {
   content := string(bytes)
   exptectedContent := "Hello, World"
   if (content != exptectedContent) {
-    t.Errorf("got `%v` , expected `%v`", content, exptectedContent)    
+    t.Errorf("got `%v` , expected `%v`", content, exptectedContent)
   }
 }
 
 func TestStruct(t *testing.T) {
   // デフォルト値で初期化された構造体を生成
   var yamada Student
-  
+
   // 一部フィールドを初期化して生成
   tanaka := Student {
     Name: "tanaka",
   }
-  
+
   // 構造体を初期化してポインタで取得
   pSuzuki := &Student {
     Name: "suzuki",
@@ -367,27 +367,27 @@ func TestStruct(t *testing.T) {
   // 未設定の構造体フィールドは初期値に設定されていることを検証
   expectedYamadaName := ""
   if (yamada.Name != expectedYamadaName) {
-    t.Errorf("got `%v` , expected `%v`", yamada.Name, expectedYamadaName)    
+    t.Errorf("got `%v` , expected `%v`", yamada.Name, expectedYamadaName)
   }
   expectedYamadaAge := 0
   if (yamada.Age != expectedYamadaAge) {
-    t.Errorf("got `%v` , expected `%v`", yamada.Age, expectedYamadaAge)    
+    t.Errorf("got `%v` , expected `%v`", yamada.Age, expectedYamadaAge)
   }
 
   // 設定した構造体フィールドの検証
   expectedTanakaName := "tanaka"
   if (tanaka.Name != expectedTanakaName) {
-    t.Errorf("got `%v` , expected `%v`", tanaka.Name, expectedTanakaName)    
+    t.Errorf("got `%v` , expected `%v`", tanaka.Name, expectedTanakaName)
   }
 
   suzuki := *pSuzuki
   expectedSuzukiName := "suzuki"
   if (suzuki.Name != expectedSuzukiName) {
-    t.Errorf("got `%v` , expected `%v`", suzuki.Name, expectedSuzukiName)    
+    t.Errorf("got `%v` , expected `%v`", suzuki.Name, expectedSuzukiName)
   }
   // *pSuzuki.Nameと書くとエラーになってしまう模様
   if (suzuki.Name != (*pSuzuki).Name) {
-    t.Errorf("Error") 
+    t.Errorf("Error")
   }
 }
 
@@ -403,6 +403,6 @@ func TestJson(t *testing.T) {
   decoder.Decode(&student)
   expectedName := "yamada"
   if (student.Name != expectedName) {
-    t.Errorf("got `%v` , expected `%v`", student.Name, expectedName)    
+    t.Errorf("got `%v` , expected `%v`", student.Name, expectedName)
   }
 }
