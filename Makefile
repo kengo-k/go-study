@@ -14,6 +14,9 @@ run:
 build:
 	docker-compose run --rm app go build -o /app/bin/$(bin) $(target)
 
+clean:
+	docker-compose run --rm app rm -rf /app/bin
+
 test:
 	docker-compose run --rm app go test -v $(target)
 
