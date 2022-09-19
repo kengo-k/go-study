@@ -5,6 +5,9 @@ bin = main
 image:
 	docker-compose build --no-cache
 
+start:
+	docker-compose run -w /app/src --rm app /bin/ash
+
 air:
 	docker-compose run --rm app
 
@@ -19,4 +22,3 @@ clean:
 
 test:
 	docker-compose run --rm app go test -v $(target)
-
