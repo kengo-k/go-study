@@ -9,6 +9,6 @@ if [ $# != 0 ]; then
   echo "> $@"
   exec "$@"
 else
-  go install github.com/cosmtrek/air@v1.29.0;
+  go install github.com/cosmtrek/air@v1.29.0
   air -c .air.toml
 fi
