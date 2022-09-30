@@ -11,7 +11,7 @@ func TestDate(t *testing.T) {
 	// 指定日時でDateを生成
 	tz, _ := time.LoadLocation("Asia/Tokyo")
 	date := time.Date(2000, time.December, 31, 23, 59, 0, 0, tz)
-	if now != date {
+	if now == date {
 		t.Errorf("got `%v` , expected `%v` must be different", now, date)
 	}
 }
