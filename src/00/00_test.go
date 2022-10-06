@@ -2,8 +2,10 @@ package study00
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
+	"runtime"
 	"strconv"
 	"testing"
 )
@@ -328,7 +330,14 @@ func TestFunc(t *testing.T) {
 func TestDefer(t *testing.T) {
 	// Goのエラー処理にJavaのような例外処理はないのでerr変数を返す方式を使う
 	// 関数の戻り値の最後をerror型で返すようにするのが慣習。errがnilであれば正常終了と判断する
-	f, err := os.Create("/tmp/sample.txt")
+	var fileName string
+	if runtime.GOOS == "windows" {
+		tempDir := os.Getenv("TEMP")
+		fileName = fmt.Sprintf("%s\\sample.txt", tempDir)
+	} else {
+		fileName = "/tmp/sample.txt"
+	}
+	f, err := os.Create(fileName)
 	if err != nil {
 		t.Errorf("Error, cannot create a file")
 		return
@@ -341,7 +350,7 @@ func TestDefer(t *testing.T) {
 	// Closeはこの関数が終了した後に行われるためファイル出力は正常に行われる
 	io.WriteString(f, "Hello, World")
 	// 出力したファイルを読み取る
-	bytes, _ := os.ReadFile("/tmp/sample.txt")
+	bytes, _ := os.ReadFile(fileName)
 	content := string(bytes)
 	exptectedContent := "Hello, World"
 	if content != exptectedContent {
