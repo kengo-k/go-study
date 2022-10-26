@@ -38,3 +38,19 @@ func TestMemberAccess2(t *testing.T) {
 		t.Errorf("got: %v, actual:%v", got, expected)
 	}
 }
+
+func TestCreateStruct(t *testing.T) {
+	type Person struct {
+		name string
+	}
+	p1 := new(Person) // newで作成する方法
+	var p2 Person     // var宣言で作成する方法
+	p3 := &Person{    // リテラルで作成する方法
+		name: "Yamada",
+	}
+	p1.name = "Yamada"
+	p2.name = "Yamada"
+	if !(p1.name == p2.name && p2.name == p3.name) {
+		t.Errorf("name must be Yamada")
+	}
+}
