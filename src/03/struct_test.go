@@ -9,9 +9,9 @@ func TestMemberAccess1(t *testing.T) {
 	p := &Person{
 		name: "yamada",
 	}
-	// TODO comment
-	got1 := p.name
-	got2 := (*p).name
+	// pは本来ポインタなのでデリファレンスが必要なはずだがメンバにアクセスする際は省略できる
+	got1 := p.name    // このように書くこともできるが...
+	got2 := (*p).name // 本来はこのように書くのが正しい
 	expected := "yamada"
 	if got1 != expected {
 		t.Errorf("got1: %v, actual:%v", got1, expected)
@@ -29,9 +29,9 @@ func TestMemberAccess2(t *testing.T) {
 	p := Person{
 		name: &name,
 	}
-	// TODO comment
+	// 先程の例とは違いメンバがポインタの場合は省略できない
 	got := *(p.name)
-	// NG
+	// このような書き方は許されない
 	// got := p.name
 	expected := "yamada"
 	if got != expected {
