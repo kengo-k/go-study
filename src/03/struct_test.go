@@ -1,6 +1,9 @@
 package study03
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestMemberAccess1(t *testing.T) {
 	type Person struct {
@@ -78,4 +81,26 @@ func TestEmbedStruct(t *testing.T) {
 	if book.Author.name != expected {
 		t.Errorf("got: %v, expected: %v", book.Author.name, expected)
 	}
+}
+
+func TestStructTag(t *testing.T) {
+	type Person struct {
+		Name string `map:"str"`
+		Age  int    `map:"int"`
+	}
+	mapSrc := map[string]string{
+		"name": "Yamada",
+		"age":  "32",
+	}
+	var p Person
+	_decode := func(e reflect.Value, src map[string]string) error {
+		// TODO 後で書く
+		return nil
+	}
+	decode := func(dest interface{}, src map[string]string) error {
+		v := reflect.ValueOf(dest)
+		e := v.Elem()
+		return _decode(e, src)
+	}
+	decode(&p, mapSrc)
 }
