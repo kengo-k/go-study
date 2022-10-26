@@ -54,3 +54,28 @@ func TestCreateStruct(t *testing.T) {
 		t.Errorf("name must be Yamada")
 	}
 }
+
+func TestEmbedStruct(t *testing.T) {
+	type Author struct {
+		name string
+	}
+	// Book構造体にAuthor構造体を埋め込むことができる
+	type Book struct {
+		title string
+		Author
+	}
+	book := &Book{
+		title: "title1",
+		Author: Author{
+			name: "author1",
+		},
+	}
+	expected := "author1"
+	// 本来はbook.Author.nameだがショートカットbook.nameと書くことができる
+	if book.name != expected {
+		t.Errorf("got: %v, expected: %v", book.name, expected)
+	}
+	if book.Author.name != expected {
+		t.Errorf("got: %v, expected: %v", book.Author.name, expected)
+	}
+}
