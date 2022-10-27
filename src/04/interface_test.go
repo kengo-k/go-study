@@ -1,6 +1,7 @@
 package study04
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -44,6 +45,17 @@ func TestCast(t *testing.T) {
 		}
 	} else {
 		t.Errorf("cat should be Sleeper")
+	}
+
+	var anyValue any = 1
+	// 型switch
+	switch v := anyValue.(type) {
+	case string:
+		t.Errorf("fail")
+	case int:
+		fmt.Printf("v is %v", v)
+	default:
+		t.Errorf("fail")
 	}
 
 }
