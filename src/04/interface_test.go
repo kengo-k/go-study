@@ -59,3 +59,44 @@ func TestCast(t *testing.T) {
 	}
 
 }
+
+type Container struct {
+	runner Runner
+}
+
+func (c *Container) Run() string {
+	return c.runner.Run()
+}
+
+func (c *Container) AddFactory(create func() Runner) {
+	c.runner = create()
+}
+
+type Runner interface {
+	Run() string
+}
+
+type RunnerImpl struct{}
+
+func (r RunnerImpl) Run() string {
+	return "RunnerImpl!"
+}
+
+var container = &Container{}
+
+// init関数は最初に一度だけ呼び出される
+// この処理の中で条件に応じて適切なFactoryを設定することで処理を切り替える
+func init() {
+	fmt.Printf("init called...")
+	container.AddFactory(func() Runner {
+		return &RunnerImpl{}
+	})
+}
+
+func TestSwitchStatic(t *testing.T) {
+	got := container.Run()
+	expected := "RunnerImpl!"
+	if got != expected {
+		t.Errorf("got: %v, expected: %v", got, expected)
+	}
+}
