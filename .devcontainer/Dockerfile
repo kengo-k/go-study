@@ -10,3 +10,8 @@ RUN addgroup --gid $USER_GID $USERNAME \
 # install required packages
 RUN apk update && \
   apk add  --no-cache git openssh-client
+
+USER workspace-user
+
+RUN git config --global user.email 31839234+kengo-k@users.noreply.github.com && \
+    git config --global user.name "kengo-k"
