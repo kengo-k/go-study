@@ -15,3 +15,9 @@ USER workspace-user
 
 RUN git config --global user.email 31839234+kengo-k@users.noreply.github.com && \
     git config --global user.name "kengo-k"
+
+# 状況整理: host -> workspaceには.sshをコピー
+# workspace -> containerにはマウント
+# このままでは動かない。コンテナ内でマウントされたconfigを600にしたら動いた。
+# そもそもhostでconfigを600にしておけばhost->workspace->containerですべてマウントで通しても動く、かもしれない
+# ここは要検証
