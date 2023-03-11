@@ -4,5 +4,7 @@
   "remoteUser": "workspace-user",
   "mounts": [
     "source=${localEnv:HOME}/.ssh/,target=/home/workspace-user/.ssh/,type=bind,consistency=cached"
-  ]
+  ],
+  "postCreateCommand": "chmod 600 $HOME/.ssh/config"
+
 }
