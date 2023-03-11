@@ -1,0 +1,8 @@
+{
+  "name": "study-go",
+  "dockerFile": "Dockerfile",
+  "remoteUser": "workspace-user",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh/,target=/home/workspace-user/.ssh/,type=bind,consistency=cached"
+  ]
+}
