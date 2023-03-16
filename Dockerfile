@@ -12,7 +12,7 @@ RUN addgroup --gid $USER_GID $USERNAME \
 
 # install required packages
 RUN apk update && \
-  apk add  --no-cache git openssh-client
+  apk add  --no-cache git openssh-client make
 
 USER $USERNAME
 
