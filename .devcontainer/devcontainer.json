@@ -1,12 +1,6 @@
 {
   "name": "study-go",
-  "dockerComposeFile": "docker-compose.yaml",
-  //"image": "golang:1.19-alpine",
+  "dockerComposeFile": "../docker-compose.yaml",
   "service": "app",
-  //"remoteUser": "container-user",
-  //"workspaceMount": "source=${localWorkspaceFolder},target=/workspace/study-go,type=bind,consistency=cached",
   "workspaceFolder": "/workspace"
-  // "mounts": [
-  //   "source=${localEnv:HOME}/.ssh/,target=/home/container-user/.ssh/,type=bind,consistency=cached"
-  // ]
 }
