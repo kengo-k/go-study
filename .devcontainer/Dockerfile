@@ -17,3 +17,4 @@ RUN apk update && \
 USER $USERNAME
 
 ENTRYPOINT [ "/entrypoint.sh" ]
+CMD [ "/bin/ash" ]
