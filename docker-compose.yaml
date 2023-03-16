@@ -6,7 +6,7 @@ services:
     container_name: study-go
     user: container-user
     volumes:
-      - ../:/workspace
+      - ./:/workspace
       - $HOME/.ssh:/home/container-user/.ssh
     working_dir: /workspace
     tty: true
