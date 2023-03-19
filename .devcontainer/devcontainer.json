@@ -1,6 +1,6 @@
 {
   "name": "study-go",
   "dockerComposeFile": "../docker-compose.yaml",
-  "service": "app",
+  "service": "study-go",
   "workspaceFolder": "/workspace"
 }
